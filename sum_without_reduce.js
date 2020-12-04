@@ -11,9 +11,10 @@
 // 2701
 
 function sumStrings(num1, num2){
-    const array1 = num1.split('')
-    const array2 = num2.split('')
+    let array1 = num1.split('')
+    let array2 = num2.split('')
     let output = []
+    let sum = 0
     let carry = 0
     let remainder = 0
 
@@ -26,13 +27,16 @@ function sumStrings(num1, num2){
         array1 = zeroArray.concat(array1)
     }
 
-    for(let i=array1.length - 1; i >= 0; i--){
-        sum = output.push(parseInt(array1[i]) + parseInt(array2[i])) + carry
-        carry = Math.floor(parseInt(array1[i]) + parseInt(array2[i]) / 10)
+    for(let i=[array1.length - 1]; i >= 0; i--){
+        sum = output.push(parseInt(array1[i]) + parseInt(array1[i])) + carry
+        carry = Math.floor((parseInt(array1[i]) + parseInt(array2[i])) / 10)
         remainder = remainder > 1 ? sum % 10 : null
         output.push(remainder)
     }
     return output.reverse().join('')
 }
 
-console.log(sumStrings("120", "120"))
+console.log(sumStrings("100", "100")) // pass
+console.log(sumStrings("9", "90")) // pass
+console.log(sumStrings("9", "9")) // pass
+console.log(sumStrings("66", "66")) // fail
