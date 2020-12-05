@@ -33,7 +33,7 @@ function sumStrings(num1, num2){
         remainder = remainder >= 1 ? sum % 10 : null
         output.push(sum, remainder)
     }
-    carry > 0 ? output.push(1) : null
+    carry > 0 ? output.push(carry) : null
     return output.reverse().join('')
 }
 
@@ -42,4 +42,6 @@ console.log('output:', sumStrings("123", "45")) // pass
 console.log('output:', sumStrings("9", "9")) // pass
 console.log('output:', sumStrings("66", "66")) // pass
 console.log('output:', sumStrings("99", "99")) // pass
+console.log('output:', sumStrings("953", "8475")) // pass
 console.log('output:', sumStrings("8475", "953")) // pass
+console.log('output:', sumStrings("2578", "123")) // fail
