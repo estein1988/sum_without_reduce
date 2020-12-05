@@ -19,24 +19,27 @@ function sumStrings(num1, num2){
     let remainder = 0
 
     if(array2.length < array1.length){
-        zeroArray = new Array(array1.length - array2.length).fill("0")
-        array2 = zeroArray.concat(array2)
+        fillArray = new Array(array1.length - array2.length).fill("0")
+        array2 = fillArray.concat(array2)
 
     } else if (array2.length > array1.length){
-        zeroArray = new Array(array2.length - array1.length).fill("0")
-        array1 = zeroArray.concat(array1)
+        fillArray = new Array(array2.length - array1.length).fill("0")
+        array1 = fillArray.concat(array1)
     }
 
     for(let i=[array1.length - 1]; i >= 0; i--){
-        sum = output.push(parseInt(array1[i]) + parseInt(array1[i])) + carry
-        carry = Math.floor((parseInt(array1[i]) + parseInt(array2[i])) / 10)
-        remainder = remainder > 1 ? sum % 10 : null
-        output.push(remainder)
+        sum = (+(+array1[i] + +array2[i]).toString().split('').pop()) + carry
+        carry = Math.floor((+array1[i] + +array2[i]) / 10)
+        remainder = remainder >= 1 ? sum % 10 : null
+        output.push(sum, remainder)
     }
+    carry > 0 ? output.push(1) : null
     return output.reverse().join('')
 }
 
-console.log(sumStrings("100", "100")) // pass
-console.log(sumStrings("9", "90")) // pass
-console.log(sumStrings("9", "9")) // pass
-console.log(sumStrings("66", "66")) // fail
+console.log('output:', sumStrings("100", "100")) // pass
+console.log('output:', sumStrings("123", "45")) // pass
+console.log('output:', sumStrings("9", "9")) // pass
+console.log('output:', sumStrings("66", "66")) // pass
+console.log('output:', sumStrings("99", "99")) // pass
+console.log('output:', sumStrings("8475", "953")) // pass
